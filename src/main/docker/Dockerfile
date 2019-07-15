@@ -32,8 +32,5 @@ RUN wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-mave
     yum -y install apache-maven
         
 # download maven dependency
-RUN cd /tmp && curl  -O https://raw.githubusercontent.com/qq275860560/dataxweb/master/pom.xml && (mvn install -e -U || true) 
-
-# test
 RUN rm -rf /tmp/dataxweb && cd /tmp &&  git clone https://github.com/qq275860560/dataxweb.git &&\
-    cd /tmp/dataxweb && (mvn clean install -DskipTests || true)&& rm -rf /tmp/dataxweb
+    cd /tmp/dataxweb && (mvn spring-boot:run || true)&& rm -rf /tmp/dataxweb
