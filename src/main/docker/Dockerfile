@@ -33,4 +33,4 @@ RUN wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-mave
         
 # download maven dependency
 RUN rm -rf /tmp/dataxweb && cd /tmp &&  git clone https://github.com/qq275860560/dataxweb.git &&\
-    cd /tmp/dataxweb && (mvn spring-boot:run || true)&& rm -rf /tmp/dataxweb
+    cd /tmp/dataxweb && (nohup mvn spring-boot:run &) && ( ps -ef | grep spring-boot | grep -v grep | awk '{print $2}' | xargs kill -9) && rm -rf /tmp/dataxweb
